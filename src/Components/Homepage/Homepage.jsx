@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from './Home.jsx';
-import Postcard from './Postcard.jsx';
+import Postcard from './Postcard/Postcard.jsx';
 import Footer from './Footer.jsx';
 
 const Homepage = () => {
