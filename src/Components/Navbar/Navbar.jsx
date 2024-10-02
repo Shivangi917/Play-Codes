@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineUser } from 'react-icons/ai';
 
-function Navbar() {
+const Navbar = ({isLoggedIn, username, handleLogout}) => {
   return (
     <nav className='flex justify-between p-6 text-white bg-gray-800'>
         <div className='font-bold text-2xl'>
@@ -13,21 +13,24 @@ function Navbar() {
                 <Link to="/">Home</Link>
             </li>
             <li className='hover:text-blue-500'>
-                <Link to="/project">Project</Link>
+                <Link to="/codes">Codes</Link>
             </li>
             <li className='hover:text-blue-500'>
-                <Link to="/discussion">Discussions</Link>
-            </li>
-            <li className=''>
                 <Link to="/about">About</Link>
             </li>
         </ul>
         <div className='flex hover:text-blue-500'>
-            <AiOutlineUser className='mt-1 mr-2' />
-            <Link to="/profile">Profile</Link>
+            {isLoggedIn ? (
+                <div>
+                    <span>Welcome, {username}</span>
+                    <Link to="/profile">Profile</Link>
+                </div>
+            ) : (
+                <Link to="/login">Login</Link>
+            )}
         </div>
     </nav>
   );
-}
+};
 
 export default Navbar;

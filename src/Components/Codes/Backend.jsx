@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Postcard = () => {
+const Backend = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const Postcard = () => {
   )
 }
 
-export default Postcard;
+export default Backend;

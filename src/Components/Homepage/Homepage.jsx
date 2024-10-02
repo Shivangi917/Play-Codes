@@ -1,13 +1,13 @@
 import React from 'react';
 import Home from './Home.jsx';
-import Postcard from './Postcard/Postcard.jsx';
+import Post from './Post.jsx';
 import Footer from './Footer.jsx';
 
 const Homepage = () => {
   return (
     <div>
         <Home/>
-        <Postcard/>
+        <Post/>
         <Footer/>
     </div>
   )
