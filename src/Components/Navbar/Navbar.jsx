@@ -20,14 +20,7 @@ const Navbar = ({isLoggedIn, username, handleLogout}) => {
             </li>
         </ul>
         <div className='flex hover:text-blue-500'>
-            {isLoggedIn ? (
-                <div>
-                    <span>Welcome, {username}</span>
-                    <Link to="/profile">Profile</Link>
-                </div>
-            ) : (
-                <Link to="/login">Login</Link>
-            )}
+            <Link to="/login">Login</Link>
         </div>
     </nav>
   );
