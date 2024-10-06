@@ -62,6 +62,12 @@ const About = () => {
             <AiFillTwitterSquare className='bg-slte-200 box-content px-3 py-2 rounded-lg shadow-lg shadow-black/30 cursor-pointer hover:shadow-inner hover:shadow-black/30 duration-300 hover:text-cyan-500'/>
           </a>
         </div>
+        <div className='footer bg-black text-white pt-10 text-center'>
+          <p>Copyright © 2024 Shivangi Shree. All rights reserved.</p>
+          <p>Contact: <a href="mailto:shivangi@example.com" className='text-cyan-500'>shivangishree020@gmail.com</a></p>
+        </div>
+
+        <div className='h-4 bg-black'></div>
     </div>
   )
 }

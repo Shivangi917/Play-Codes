@@ -1,16 +1,21 @@
 import React from 'react';
-import Home from './Home.jsx';
-import Post from './Post.jsx';
-import Footer from './Footer.jsx';
+import LeftSidebar from './LeftSidebar';
+import RightSidebar from './RightSidebar';
+import Post from './Post';
 
-const Homepage = () => {
+const HomePage = () => {
   return (
-    <div>
-        <Home/>
-        <Post/>
-        <Footer/>
+    <div className='flex min-h-screen bg-gray-100'>
+      {/* Left Sidebar */}
+      <LeftSidebar />
+
+      {/* Main Post Section */}
+      <Post />
+
+      {/* Right Sidebar */}
+      <RightSidebar />
     </div>
-  )
+  );
 }
 
-export default Homepage;
+export default HomePage;
