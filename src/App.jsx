@@ -7,16 +7,19 @@ import About from './Components/About/About';
 import Login from './Components/Login/Login';
 import SignUp from './Components/SignUp/SignUp';
 import Profile from './Components/Profile/Profile';
+import PostCode from './Components/Post/PostCode';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
+  const [useremail, setUseremail] = useState('');
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser && storedUser.name) {
       setIsLoggedIn(true);
       setUsername(storedUser.name);
+      setUseremail(storedUser.email);
     }
   }, []);
 
@@ -39,6 +42,7 @@ function App() {
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} setUsername={setUsername} />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile username={username} />} />
+        <Route path="/postcode" element={<PostCode useremail={useremail}/>} />
       </Routes>
     </Router>
   );

@@ -1,10 +1,5 @@
-// src/Codes.jsx
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Frontend from './Frontend';
-import Backend from './Backend';
-import ML from './ML';
 
 const Codes = () => {
   const [codes, setCodes] = useState([]);
@@ -14,44 +9,44 @@ const Codes = () => {
   useEffect(() => {
     const fetchCodes = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/codes'); // Adjust the URL if needed
-        setCodes(response.data);
+        const response = await axios.get('http://localhost:3000/codes'); // Fetch codes from backend
+        console.log(response.data); // Log fetched data to inspect structure
+        setCodes(response.data); // Set the fetched codes to state
       } catch (err) {
-        console.error("Error fetching codes:", err);
-        setError("Failed to fetch codes");
+        setError("Error fetching codes"); // Handle error
+        console.error(err);
       } finally {
-        setLoading(false);
+        setLoading(false); // Set loading to false
       }
     };
 
-    fetchCodes();
+    fetchCodes(); // Call the fetch function
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // Show loading message
+  }
+
+  if (error) {
+    return <div>{error}</div>; // Show error message
+  }
 
   return (
     <div>
-      <h2>Frontend</h2>
-      <Frontend/>
-      <h2>Backend</h2>
-      <Backend/>
-      <h2>ML</h2>
-      <ML/>
-
-      <h2>Published Codes</h2>
-      {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>{error}</p>
+      <h1>Code Snippets</h1>
+      {codes.length === 0 ? (
+        <p>No codes available.</p>
       ) : (
-        <ul>
-          {codes.map(code => (
-            <li key={code._id}>
-              <h3>{code.title}</h3>
-              <p>{code.description}</p>
-              <pre>{code.codeSnippet}</pre>
-              <p>Published by: {} ({}) on {new Date(code.datePublished).toLocaleDateString()}</p>
-            </li>
-          ))}
-        </ul>
+        codes.map((code) => (
+          <div key={code._id} className="code-card">
+            <h2>{code.title}</h2>
+            <p><strong>Description:</strong> {code.description}</p>
+            <pre><code>{code.codeSnippet}</code></pre>
+            {/* Safeguard against undefined user */}
+            <p><strong>Posted by:</strong> {code.user ? code.user.name : "Unknown User"}</p>
+            <p><strong>Date Published:</strong> {new Date(code.datePublished).toLocaleDateString()}</p>
+          </div>
+        ))
       )}
     </div>
   );
