@@ -1,17 +1,20 @@
 // src/Components/SignUp.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:3000/Signup', { name, email, password });
       console.log("Signup successful:", response.data); // Log the response data
+      navigate('/');
     } catch (error) {
       console.error("Error during signup:", error); // Log the error
     }

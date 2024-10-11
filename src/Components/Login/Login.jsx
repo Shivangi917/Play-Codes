@@ -3,26 +3,32 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Login = () => {
+const Login = ({setIsLoggedIn, setUsername}) => {
     const navigate = useNavigate();
 
     const handleSignUp = () => {
         navigate('/signup');
     }
 
-    const [email, setEmail] = useState(''); // Use email for login
+    const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:3000/login', { email, password });
-            console.log("Login successful:", response.data); // Log the response data
-            // Redirect to another page if login is successful
-            navigate('/'); // or wherever you want to navigate
+            console.log("Login successful:", response.data); 
+            const userData = response.data.user; // Get user info from response
+            localStorage.setItem('user', JSON.stringify(userData)); // Save to localStorage
+
+            // Update login state in App.jsx
+            setIsLoggedIn(true);
+            setUsername(userData.name);
+            console.log("i am in try block")
+            navigate('/');
         } catch (error) {
-            console.error("Error during login:", error);
-            // Handle the case where the user is not registered or the password is incorrect
+            //console.log("i am in catch block")
+            console.log("I am the error, ", error);
             alert("Invalid email or password. Please try again or sign up.");
         }
     };

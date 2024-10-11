@@ -1,9 +1,12 @@
 import React from 'react';
+import Posts from './Posts';
+import UserInfo from './UserInfo';
 
-const Profile = () => {
+const Profile = ({ username }) => {
   return (
     <div>
-      <p>Hello</p>
+      <UserInfo username={username}/>
+      <Posts />
     </div>
   )
 }
