@@ -8,6 +8,7 @@ import Login from './Components/Login/Login';
 import SignUp from './Components/SignUp/SignUp';
 import Profile from './Components/Profile/Profile';
 import PostCode from './Components/Post/PostCode';
+import CodeSnippet from './Components/Snippet/CodeSnippet';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,7 +24,6 @@ function App() {
     }
   }, []);
 
-  // Handle logout by clearing localStorage and updating state
   const handleLogout = () => {
     localStorage.removeItem('user');
     setIsLoggedIn(false);
@@ -34,7 +34,6 @@ function App() {
   return (
     <Router>
       <Navbar isLoggedIn={isLoggedIn} username={username} handleLogout={handleLogout} />
-      {/* Conditionally render homepage when logged out */}
       <Routes>
         <Route path="/" element={isLoggedIn ? <Homepage /> : <Homepage />} />
         <Route path="/codes" element={<Codes />} />
@@ -43,6 +42,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile username={username} />} />
         <Route path="/postcode" element={<PostCode useremail={useremail}/>} />
+        <Route path="/codes/codeSnippet" element={<CodeSnippet />} /> {/* No need to pass codeSnippet here */}
       </Routes>
     </Router>
   );

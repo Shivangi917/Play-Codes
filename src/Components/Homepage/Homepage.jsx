@@ -7,32 +7,31 @@ import { useNavigate } from 'react-router-dom';
 const HomePage = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
-  //console.log('User data: ', user.name);
 
-  if(user) {
+  if (user) {
     return (
       <div>
-        <h1>Welcome, {user.name}!</h1>
-        <div className='flex min-h-screen bg-gray-100'>
+        <div className='flex min-h-screen'>
           {/* Left Sidebar */}
           <LeftSidebar />
-    
-          {/* Main Post Section */}
-          <Post />
-    
+
+          {/* Vertical Line Divider and Main Post Section */}
+          <div className='border-y border-2 border-gray-300 mx-4 flex-grow'>
+            <Post />
+          </div>
+
           {/* Right Sidebar */}
           <RightSidebar />
         </div>
       </div>
-      
     );
-  } 
+  }
 
   return (
     <div>
       Welcome to our website!
     </div>
-  )
-}
+  );
+};
 
 export default HomePage;
