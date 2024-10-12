@@ -12,6 +12,7 @@ const Post = () => {
         const response = await axios.get('http://localhost:3000/post'); // Corrected URL to '/post'
         setProjects(response.data); // Store fetched projects in state
         setLoading(false);
+        console.log(response.data);
       } catch (error) {
         console.error('Error fetching projects: ', error);
         setError("Error fetching projects.");

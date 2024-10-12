@@ -12,7 +12,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/Signup', { name, email, password });
+      const response = await axios.post('http://localhost:3000/signup', { name, email, password });
       console.log("Signup successful:", response.data); // Log the response data
       navigate('/');
     } catch (error) {
