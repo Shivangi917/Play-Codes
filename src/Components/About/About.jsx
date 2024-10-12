@@ -4,7 +4,7 @@ import {AiFillInstagram, AiFillTwitterSquare, AiFillGithub, AiFillLinkedin} from
 
 const About = () => {
   return (
-    <div className='bg-black text-white min-h-screen '>
+    <div className='bg-gray-900 text-white min-h-screen '>
         {/*Funny thing about the programmer*/}
         <div>
           <h1 className='text-6xl text-center mb-10 pt-10 text-cyan-500'>About us</h1>

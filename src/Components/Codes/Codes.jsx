@@ -33,14 +33,19 @@ const Codes = () => {
     if (error) return <p>{error}</p>;
 
     return (
-        <div>
-            <h1>Code Snippets</h1>
-            <div>
+        <div className='min-h-screen bg-gray-900 text-white p-6'>
+            <h1 className='text-4xl font-bold text-center mb-10 border-b-4 border-b-cyan-800 inline-block pb-5'>
+                Code Snippets Repository
+            </h1>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                 {codes.length > 0 ? (
                     codes.map((code) => (
-                        <div key={code._id} onClick={() => handleOpenSnippet(code.codeSnippet)} className="code-snippet border p-4 m-2 rounded-md bg-gray-200">
-                            <h2> {code.user ? code.user.name : "Unknown"}/{code.title}</h2>
-                            <p><strong>Description:</strong> {code.description}</p>
+                        <div key={code._id} onClick={() => handleOpenSnippet(code.codeSnippet)} 
+                            className="code-snippet p-6 rounded-md bg-gray-800 hover:bg-gray-700 transition-all duration-300 cursor-pointer">
+                            <h2 className='text-cyan-600'>
+                                {code.user ? code.user.name : "Unknown"}/{code.title}
+                            </h2>
+                            <p className='mt-4'><strong>Description:</strong> {code.description}</p>
                         </div>
                     ))
                 ) : (
