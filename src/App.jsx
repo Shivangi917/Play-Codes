@@ -9,6 +9,8 @@ import SignUp from './Components/SignUp/SignUp';
 import Profile from './Components/Profile/Profile';
 import PostCode from './Components/Post/PostCode';
 import CodeSnippet from './Components/Snippet/CodeSnippet';
+import PostProject from './Components/Post/PostProject';
+import Post from './Components/Homepage/Post';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -42,7 +44,9 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile username={username} />} />
         <Route path="/postcode" element={<PostCode useremail={useremail}/>} />
-        <Route path="/codes/codeSnippet" element={<CodeSnippet />} /> {/* No need to pass codeSnippet here */}
+        <Route path="/codes/codeSnippet" element={<CodeSnippet />} /> 
+        <Route path="/postproject" element={<PostProject useremail={useremail}/>} />
+        <Route path="/post" element={<Post />} />
       </Routes>
     </Router>
   );
