@@ -9,7 +9,7 @@ const Post = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/projects'); // Corrected URL to '/projects'
+        const response = await axios.get('http://localhost:3000/post'); // Corrected URL to '/post'
         setProjects(response.data); // Store fetched projects in state
         setLoading(false);
       } catch (error) {
@@ -25,11 +25,19 @@ const Post = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
+    <div className="post-container">
       {projects.length > 0 ? (
         projects.map((project) => (
-          <div key={project._id}>
-            {project.user ? project.user.name : "Unknown"} {/* Fixed reference */}
+          <div key={project._id} className="post">
+            <h2>{project.user ? project.user.name : "Unknown"}</h2>
+            <p>{project.description}</p>
+            {project.image && (
+              <img
+                src={`http://localhost:3000/Public/${project.image}`} // Ensure this path is correct
+                alt={project.description}
+                className="post-image"
+              />
+            )}
           </div>
         ))
       ) : (
