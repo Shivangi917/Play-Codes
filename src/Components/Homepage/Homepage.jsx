@@ -13,7 +13,7 @@ const HomePage = () => {
       <div>
         <div className='flex min-h-screen bg-zinc-900'>
           {/* Left Sidebar */}
-          <div className="flex-1 mt-5">
+          <div className="flex-1 mt-5 sticky top-0">
             <LeftSidebar />
           </div>
 
@@ -23,7 +23,7 @@ const HomePage = () => {
           </div>
 
           {/* Right Sidebar */}
-          <div className="flex-1 mt-5">
+          <div className="flex-1 mt-5 sticky top-0">
             <RightSidebar />
           </div>
         </div>

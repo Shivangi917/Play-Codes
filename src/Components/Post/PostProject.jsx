@@ -22,24 +22,32 @@ const PostProject = ({ useremail }) => {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input 
-                    type="text" 
-                    placeholder='Description' 
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    className='block' 
-                    required
-                />
-                <input 
-                    type="file"
-                    accept="image/*"
-                    onChange={e => setImage(e.target.files[0])}
-                    className='block' 
-                />
-                <button type="submit">Upload Project</button>
-            </form>
+        <div className="min-h-screen bg-gray-900 flex items-center justify-center p-6">
+            <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
+                <h2 className="text-3xl text-cyan-600 mb-4 text-center">Upload Your Project</h2>
+                <form onSubmit={handleSubmit}>
+                    <textarea
+                        placeholder="Description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        className="block w-full p-3 mb-4 rounded-md bg-gray-700 text-white placeholder-gray-400 resize-none"
+                        rows="4"
+                        required
+                    />
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={e => setImage(e.target.files[0])}
+                        className="block w-full text-gray-200 mb-4"
+                    />
+                    <button
+                        type="submit"
+                        className="bg-cyan-600 w-full p-3 rounded-md text-white hover:bg-cyan-500 transition duration-200"
+                    >
+                        Upload Project
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };

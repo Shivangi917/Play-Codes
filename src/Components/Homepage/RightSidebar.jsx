@@ -2,7 +2,7 @@ import React from 'react';
 
 const RightSidebar = () => {
   return (
-    <div className='bg-gray-900 text-white p-4 rounded-lg shadow-lg sticky top-4'>
+    <div className='bg-gray-900 text-white p-4 rounded-lg shadow-lg'>
       <h2 className="text-2xl mb-4">Right Sidebar</h2>
 
       {/* Sponsored Ads */}

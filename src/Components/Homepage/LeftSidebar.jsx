@@ -2,7 +2,7 @@ import React from 'react';
 
 const LeftSidebar = () => {
   return (
-    <div className='bg-gray-900 text-white p-4 shadow-lg rounded-lg sticky top-0 h-screen'>
+    <div className='bg-gray-900 text-white p-4 shadow-lg rounded-lg h-screen'>
       <h2 className="text-2xl font-bold mb-4 border-b-2 border-cyan-600 pb-2">Dashboard</h2>
       
       <div className='mb-8'>

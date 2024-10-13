@@ -10,7 +10,7 @@ const Navbar = ({ isLoggedIn, username, handleLogout }) => {
   }
 
   return (
-    <nav className='flex justify-between p-6 text-white bg-gray-800'>
+    <nav className='flex justify-between p-6 text-white bg-gray-800 z-10 relative'> 
       <div className='font-bold text-2xl text-cyan-600'>
         <p>Play Codes</p>
       </div>
