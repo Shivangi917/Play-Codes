@@ -11,17 +11,21 @@ const HomePage = () => {
   if (user) {
     return (
       <div>
-        <div className='flex min-h-screen'>
+        <div className='flex min-h-screen bg-zinc-900'>
           {/* Left Sidebar */}
-          <LeftSidebar />
+          <div className="flex-1 mt-5">
+            <LeftSidebar />
+          </div>
 
           {/* Vertical Line Divider and Main Post Section */}
-          <div className='border-y border-2 border-gray-300 mx-4 flex-grow'>
+          <div className='m-5 flex-[1.9] border-x-2 border-gray-300 px-4'>
             <Post />
           </div>
 
           {/* Right Sidebar */}
-          <RightSidebar />
+          <div className="flex-1 mt-5">
+            <RightSidebar />
+          </div>
         </div>
       </div>
     );
