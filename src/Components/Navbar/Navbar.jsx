@@ -2,19 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineUser } from 'react-icons/ai';
 import { AiOutlineSearch } from 'react-icons/ai';
+import SearchBar from '../SearchBar/SearchBar';
 
 const Navbar = ({ isLoggedIn, username, handleLogout }) => {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
 
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    // Handle search logic here
-    console.log("Searching for:", searchTerm);
   };
 
   return (
@@ -33,18 +27,7 @@ const Navbar = ({ isLoggedIn, username, handleLogout }) => {
           <Link to="/about">About</Link>
         </li>
       </ul>
-      <form onSubmit={handleSearch} className='flex items-center space-x-2'>
-        <input 
-          type="text" 
-          placeholder="Search..." 
-          value={searchTerm} 
-          onChange={(e) => setSearchTerm(e.target.value)} 
-          className='p-2 rounded-lg bg-gray-700 text-white focus:outline-none'
-        />
-        <button type="submit" className='p-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 transition duration-200'>
-          <AiOutlineSearch size={20} />
-        </button>
-      </form>
+      <SearchBar />
       <div className='flex items-center space-x-4'>
         {isLoggedIn ? (
           <>
