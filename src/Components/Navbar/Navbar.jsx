@@ -58,7 +58,7 @@ const Navbar = ({ isLoggedIn, username, handleLogout }) => {
               <span>Hello, {username}</span>
             </span>
             {isDropdownVisible && (
-              <ul className='absolute right-4 mt-2 w-36 bg-gray-700 rounded-lg shadow-lg text-white transition-opacity duration-200' onClick={toggleDropdown}>
+              <ul className='absolute right-4 mt-64 w-32 bg-gray-700 rounded-lg shadow-lg text-white transition-opacity duration-200' onClick={toggleDropdown}>
                 <li className='px-4 py-2 hover:bg-gray-600 rounded-t-lg'>
                   <Link to="/profile">My Profile</Link>
                 </li>

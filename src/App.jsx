@@ -46,7 +46,7 @@ function App() {
         <Route path="/postcode" element={<PostCode useremail={useremail}/>} />
         <Route path="/codes/codeSnippet" element={<CodeSnippet />} /> 
         <Route path="/postproject" element={<PostProject useremail={useremail}/>} />
-        <Route path="/post" element={<Post />} />
+        <Route path="/post" element={<Post useremail={useremail}/>} />
       </Routes>
     </Router>
   );
