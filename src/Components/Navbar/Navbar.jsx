@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom'; // Import useLocation for checking the active path
 import { AiOutlineUser } from 'react-icons/ai';
-import { AiOutlineSearch } from 'react-icons/ai';
 import SearchBar from '../SearchBar/SearchBar';
 
 const Navbar = ({ isLoggedIn, username, handleLogout }) => {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
+  const location = useLocation(); // Get the current location
 
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
@@ -43,7 +43,7 @@ const Navbar = ({ isLoggedIn, username, handleLogout }) => {
             {isDropdownVisible && (
               <ul className='absolute right-4 mt-64 w-32 bg-gray-700 rounded-lg shadow-lg text-white transition-opacity duration-200' onClick={toggleDropdown}>
                 <li className='px-4 py-2 hover:bg-gray-600 rounded-t-lg'>
-                  <Link to="/profile">My Profile</Link>
+                  <Link to={`/users/${username}`}>My Profile</Link> {/* Dynamic link to user's profile */}
                 </li>
                 <li className='px-4 py-2 hover:bg-gray-600'>
                   <Link to="/postcode">Post Code</Link>
