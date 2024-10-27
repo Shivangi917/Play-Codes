@@ -49,7 +49,7 @@ const About = () => {
         {/*Some question and answer*/}
         {/*My github, instagram, twitter, linkedin profile*/}
         <div className='mt-10 flex flex-row space-x-10 text-4xl justify-center items-center bg-white/10 backdrop-blur-md rounded-lg p-5 mx-auto w-1/2 shadow-lg border-2 border-cyan-200 shadow-lg hover:shadow-cyan-400 transition-all duration-300'>
-          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/_shivangi_shree" target="_blank" rel="noopener noreferrer">
             <AiFillInstagram className='bg-slte-200 box-content px-3 py-2 rounded-lg shadow-lg shadow-black/30 cursor-pointer hover:shadow-inner hover:shadow-black/30 duration-300 hover:text-cyan-500'/>
           </a>
           <a href="https://github.com/Shivangi917" target="_blank" rel="noopener noreferrer">
