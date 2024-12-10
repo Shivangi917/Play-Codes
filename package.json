@@ -1,5 +1,6 @@
 {
   "name": "play-codes",
+  "homepage": "https://Shivangi917.github.io/Play-Codes/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,11 +8,14 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "ace-builds": "^1.36.2",
     "axios": "^1.7.7",
+    "gh-pages": "^6.2.0",
     "react": "^18.3.1",
     "react-ace": "^12.0.0",
     "react-dom": "^18.3.1",
