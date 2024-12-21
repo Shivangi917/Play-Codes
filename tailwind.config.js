@@ -1,5 +1,8 @@
 export default {
-  content: ['./src/**/*.{html,js}'],
+  content: [
+      './index.html',
+      './src/**/*.{html,js,jsx,ts,tsx}', // Adjust paths based on your file structure
+  ],
   theme: {
       extend: {},
   },
