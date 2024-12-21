@@ -1,6 +1,11 @@
 import React from 'react';
+import LeftSidebar from './LeftSidebar';
+import RightSidebar from './RightSidebar';
+import Post from './Post';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
 
   if (user) {
