@@ -17,6 +17,7 @@ const PostCode = ({ useremail }) => {
     const [description, setDescription] = useState('');
     const [codeSnippet, setCodeSnippet] = useState('');
     const [language, setLanguage] = useState('javascript'); // Default language
+    const [successMessage, setSuccessMessage] = useState(''); // New state for success message
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -32,6 +33,13 @@ const PostCode = ({ useremail }) => {
 
             const response = await axios.post('http://localhost:3000/codes', payload);
             console.log("Code posted successfully: ", response.data);
+            setSuccessMessage("Code posted successfully!"); // Set success message
+
+            // Clear the form fields after successful submission
+            setTitle('');
+            setDescription('');
+            setCodeSnippet('');
+            setLanguage('javascript'); // Reset to default language
         } catch (error) {
             console.error("Error posting code: ", error);
         }
@@ -85,6 +93,11 @@ const PostCode = ({ useremail }) => {
                         Post Code
                     </button>
                 </form>
+                {successMessage && (
+                    <div className="text-green-500 text-center mt-4">
+                        {successMessage}
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -4,6 +4,7 @@ import axios from 'axios';
 const PostProject = ({ useremail }) => {
     const [description, setDescription] = useState('');
     const [image, setImage] = useState(null);
+    const [successMessage, setSuccessMessage] = useState(''); // New state for success message
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -15,7 +16,12 @@ const PostProject = ({ useremail }) => {
 
         try {
             const response = await axios.post('http://localhost:3000/post', formData);
+            setSuccessMessage("Project posted successfully!"); // Set success message
             console.log("Project posted successfully", response.data);
+
+            // Clear the form fields after successful submission
+            setDescription('');
+            setImage(null);
         } catch (error) {
             console.error("Error posting project: ", error.response ? error.response.data : error.message);
         }
@@ -47,6 +53,11 @@ const PostProject = ({ useremail }) => {
                         Upload Project
                     </button>
                 </form>
+                {successMessage && (
+                    <div className="text-green-500 text-center mt-4">
+                        {successMessage}
+                    </div>
+                )}
             </div>
         </div>
     );
