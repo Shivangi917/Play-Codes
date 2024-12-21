@@ -45,7 +45,7 @@ const HomePage = () => {
           {/* Feature Highlights */}
           <div className="bg-gray-800 p-6 rounded-lg shadow-md">
             <h2 className="text-2xl font-bold mb-2 text-cyan-400">Interactive Code Examples</h2>
-            <p>Explore functional code snippets for HTML, CSS, and JavaScript to kickstart your web development projects.</p>
+            <p>Explore functional code snippets</p>
           </div>
 
           <div className="bg-gray-800 p-6 rounded-lg shadow-md">
