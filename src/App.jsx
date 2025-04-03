@@ -7,7 +7,7 @@ import Codes from './Components/Codes/Codes';
 import About from './Components/About/About';
 import Login from './Components/Login/Login';
 import SignUp from './Components/SignUp/SignUp';
-import Profile from './Components/Profile/Profile'; // Keep this import
+import Profile from './Components/Profile/Profile';
 import PostCode from './Components/Post/PostCode';
 import CodeSnippet from './Components/Snippet/CodeSnippet';
 import PostProject from './Components/Post/PostProject';
@@ -19,13 +19,22 @@ function App() {
   const [useremail, setUseremail] = useState('');
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    if (storedUser && storedUser.name) {
-      setIsLoggedIn(true);
-      setUsername(storedUser.name);
-      setUseremail(storedUser.email);
+    try {
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        const parsedUser = JSON.parse(storedUser);
+        if (parsedUser.name) {
+          setIsLoggedIn(true);
+          setUsername(parsedUser.name);
+          setUseremail(parsedUser.email);
+        }
+      }
+    } catch (error) {
+      console.error("Error parsing user data:", error);
+      localStorage.removeItem('user'); // Remove corrupted data
     }
   }, []);
+  
 
   const handleLogout = () => {
     localStorage.removeItem('user');
@@ -35,7 +44,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <Router basename='/Play-Codes'>
       <Navbar isLoggedIn={isLoggedIn} username={username} handleLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Homepage />} />

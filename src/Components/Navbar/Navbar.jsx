@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom'; // Import useLocation for checking the active path
+import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineUser } from 'react-icons/ai';
 import SearchBar from '../SearchBar/SearchBar';
 
 const Navbar = ({ isLoggedIn, username, handleLogout }) => {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
-  const location = useLocation(); // Get the current location
+  const location = useLocation();
 
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
