@@ -15,10 +15,16 @@ const Login = ({setIsLoggedIn, setUsername}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/api/auth/login', { email, password });
+            const response = await axios.post(
+                'http://localhost:3000/api/auth/login',
+                { email, password },
+                { withCredentials: true } 
+            );
+              
             console.log("Login successful:", response.data); 
 
             setIsLoggedIn(true);
+            setUsername(response.data.name);
             navigate('/');
         } catch (error) {
             console.log("I am the error, ", error);

@@ -4,11 +4,10 @@ import RightSidebar from './RightSidebar';
 import Post from './Post';
 import { useNavigate } from 'react-router-dom';
 
-const HomePage = () => {
+const HomePage = ({ isLoggedIn }) => {
   const navigate = useNavigate();
-  const user = true
 
-  if (user) {
+  if (isLoggedIn) {
     return (
       <div>
         <div className='flex min-h-screen bg-zinc-900'>

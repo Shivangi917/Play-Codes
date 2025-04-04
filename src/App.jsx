@@ -12,6 +12,7 @@ import PostCode from './Components/Post/PostCode';
 import CodeSnippet from './Components/Snippet/CodeSnippet';
 import PostProject from './Components/Post/PostProject';
 import Post from './Components/Homepage/Post';
+import axios from 'axios';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -19,35 +20,40 @@ function App() {
   const [useremail, setUseremail] = useState('');
 
   useEffect(() => {
-    try {
-      const storedUser = localStorage.getItem('user');
-      if (storedUser) {
-        const parsedUser = JSON.parse(storedUser);
-        if (parsedUser.name) {
-          setIsLoggedIn(true);
-          setUsername(parsedUser.name);
-          setUseremail(parsedUser.email);
-        }
-      }
-    } catch (error) {
-      console.error("Error parsing user data:", error);
-      localStorage.removeItem('user'); // Remove corrupted data
-    }
+    fetch('http://localhost:3000/auth/user', { 
+      method: 'GET',
+      withCredentials: true
+    })
+    .then(response => {
+      if (!response.ok) throw new Error("User not authenticated");
+      return response.json();
+    })
+    .then(data => {
+      setIsLoggedIn(true);
+      setUsername(data.name);
+      setUseremail(data.email);
+    })
+    .catch(() => {
+      setIsLoggedIn(false);
+    });
   }, []);
   
 
-  const handleLogout = () => {
-    localStorage.removeItem('user');
-    setIsLoggedIn(false);
-    setUsername('');
-    console.log("You are logged out");
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post('http://localhost:3000/api/auth/logout');
+      console.log(response);
+      setIsLoggedIn(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <Router basename='/Play-Codes'>
       <Navbar isLoggedIn={isLoggedIn} username={username} handleLogout={handleLogout} />
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Homepage isLoggedIn={isLoggedIn}/>} />
         <Route path="/codes" element={<Codes />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} setUsername={setUsername} />} />
