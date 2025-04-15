@@ -5,8 +5,7 @@ import SearchBar from '../SearchBar/SearchBar';
 
 const Navbar = ({ isLoggedIn, username, handleLogout }) => {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
-  const location = useLocation();
-
+  console.log(username);
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
   };
@@ -27,10 +26,10 @@ const Navbar = ({ isLoggedIn, username, handleLogout }) => {
           <Link to="/about">About</Link>
         </li>
       </ul>
-      <SearchBar />
-      <div className='flex items-center space-x-4'>
+      <div className='flex items-center space-x-20'>
         {isLoggedIn ? (
           <>
+            <SearchBar />
             <span
               className='text-cyan-300 cursor-pointer flex items-center space-x-1' 
               onClick={toggleDropdown}
@@ -38,12 +37,12 @@ const Navbar = ({ isLoggedIn, username, handleLogout }) => {
               aria-expanded={isDropdownVisible}
             >
               <AiOutlineUser size={20} />
-              <span>Hello, {username}</span>
+              <span>{username}</span>
             </span>
             {isDropdownVisible && (
               <ul className='absolute right-4 mt-64 w-32 bg-gray-700 rounded-lg shadow-lg text-white transition-opacity duration-200' onClick={toggleDropdown}>
                 <li className='px-4 py-2 hover:bg-gray-600 rounded-t-lg'>
-                  <Link to={`/users/${username}`}>My Profile</Link> {/* Dynamic link to user's profile */}
+                  <Link to={`/users/${username}`}>My Profile</Link> 
                 </li>
                 <li className='px-4 py-2 hover:bg-gray-600'>
                   <Link to="/postcode">Post Code</Link>

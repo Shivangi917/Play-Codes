@@ -4,14 +4,14 @@ import axios from 'axios';
 const PostProject = ({ useremail }) => {
     const [description, setDescription] = useState('');
     const [image, setImage] = useState(null);
-    const [successMessage, setSuccessMessage] = useState(''); // New state for success message
+    const [successMessage, setSuccessMessage] = useState(''); 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const formData = new FormData();
         formData.append('description', description);
-        formData.append('useremail', useremail); // Include user email
+        formData.append('useremail', useremail);
         formData.append('image', image);
 
         try {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import AceEditor from 'react-ace';
-import "ace-builds/src-noconflict/theme-github"; // You can choose the theme you prefer
+import "ace-builds/src-noconflict/theme-github";
 
 // Import modes for different languages
 import "ace-builds/src-noconflict/mode-javascript";
@@ -84,7 +84,7 @@ const PostCode = ({ useremail }) => {
                         onChange={(newValue) => setCodeSnippet(newValue)}
                         name="codeSnippet"
                         editorProps={{ $blockScrolling: true }}
-                        style={{ width: '100%', height: '200px' }} // Adjust as needed
+                        style={{ width: '100%', height: '200px' }}
                     />
                     <button
                         type="submit"

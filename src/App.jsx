@@ -1,4 +1,3 @@
-// App.jsx
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
@@ -20,23 +19,32 @@ function App() {
   const [useremail, setUseremail] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/auth/user', { 
-      method: 'GET',
-      withCredentials: true
-    })
-    .then(response => {
-      if (!response.ok) throw new Error("User not authenticated");
-      return response.json();
-    })
-    .then(data => {
-      setIsLoggedIn(true);
-      setUsername(data.name);
-      setUseremail(data.email);
-    })
-    .catch(() => {
+    const token = localStorage.getItem('token');
+  
+    if (token) {
+      fetch('http://localhost:3000/auth/user', { 
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+        credentials: 'include'
+      })
+      .then(response => {
+        if (!response.ok) throw new Error("User not authenticated");
+        return response.json();
+      })
+      .then(data => {
+        setIsLoggedIn(true);
+        setUsername(data.name);
+        setUseremail(data.email);
+      })
+      .catch(() => {
+        setIsLoggedIn(false);
+      });
+    } else {
       setIsLoggedIn(false);
-    });
-  }, []);
+    }
+  }, []);  
   
 
   const handleLogout = async () => {
@@ -54,9 +62,9 @@ function App() {
       <Navbar isLoggedIn={isLoggedIn} username={username} handleLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Homepage isLoggedIn={isLoggedIn}/>} />
-        <Route path="/codes" element={<Codes />} />
+        <Route path="/codes" element={<Codes isLoggedIn={isLoggedIn} />} />
         <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} setUsername={setUsername} />} />
+        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} setUsername={setUsername} setUserEmail={setUseremail} />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/users/:username" element={<Profile loggedInUsername={username} />} /> {/* Pass loggedInUsername */}
         <Route path="/postcode" element={<PostCode useremail={useremail} />} />
