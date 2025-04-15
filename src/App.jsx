@@ -66,11 +66,13 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} setUsername={setUsername} setUserEmail={setUseremail} />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/users/:username" element={<Profile loggedInUsername={username} />} /> {/* Pass loggedInUsername */}
+        <Route path="/users/:username" element={<Profile loggedInUsername={username} isLoggedIn={isLoggedIn} useremail={useremail} />} /> {/* Pass loggedInUsername */}
         <Route path="/postcode" element={<PostCode useremail={useremail} />} />
         <Route path="/codes/codeSnippet" element={<CodeSnippet />} /> 
+        <Route path="/users/:username/codeSnippet" element={<CodeSnippet />} />
         <Route path="/postproject" element={<PostProject useremail={useremail} />} />
         <Route path="/post" element={<Post useremail={useremail} />} />
+        
       </Routes>
     </Router>
   );
