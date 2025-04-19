@@ -3,8 +3,13 @@ import axios from 'axios';
 
 const PostProject = ({ useremail }) => {
     const [description, setDescription] = useState('');
-    const [image, setImage] = useState(null);
+    const [images, setImages] = useState([]); // Store multiple images
     const [successMessage, setSuccessMessage] = useState(''); 
+
+    const handleImageChange = (e) => {
+        // Allow multiple images
+        setImages([...e.target.files]);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -12,7 +17,11 @@ const PostProject = ({ useremail }) => {
         const formData = new FormData();
         formData.append('description', description);
         formData.append('useremail', useremail);
-        formData.append('image', image);
+
+        // Append all images to formData
+        images.forEach((image) => {
+            formData.append('images', image); // 'images' is the field name
+        });
 
         try {
             const response = await axios.post('http://localhost:3000/post', formData);
@@ -21,7 +30,7 @@ const PostProject = ({ useremail }) => {
 
             // Clear the form fields after successful submission
             setDescription('');
-            setImage(null);
+            setImages([]);
         } catch (error) {
             console.error("Error posting project: ", error.response ? error.response.data : error.message);
         }
@@ -43,7 +52,8 @@ const PostProject = ({ useremail }) => {
                     <input
                         type="file"
                         accept="image/*"
-                        onChange={e => setImage(e.target.files[0])}
+                        onChange={handleImageChange}
+                        multiple  // Allow multiple file selection
                         className="block w-full text-gray-200 mb-4"
                     />
                     <button

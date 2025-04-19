@@ -14,26 +14,36 @@ const Login = ({ setIsLoggedIn, setUsername, setUserEmail }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // 1. Clear previous token (optional for cookie-based auth)
       localStorage.removeItem('token');
+
+      // 2. Login request
       const response = await axios.post(
         'http://localhost:3000/api/auth/login',
         { email, password },
-        { withCredentials: true }
+        { withCredentials: true } // IMPORTANT to send/receive cookies
       );
 
+      console.log('Login response:', response.data);
+
       const { token, user } = response.data;
+      if (!token) throw new Error('Token not received');
 
-      if(!token) throw new Error("Token not found");
+      // 3. Store token for UI state (optional)
+      localStorage.setItem('token', token);
+      console.log(token);
 
-      console.log("Login successful:", response.data);
-      localStorage.setItem('token', response.data.token);
+      // 4. Set user details in frontend state
       setIsLoggedIn(true);
       setUsername(user.name);
       setUserEmail(user.email);
+
+      // 5. Redirect to homepage
       navigate('/');
+
     } catch (error) {
-      console.log(error);
-      alert("Invalid email or password. Please try again or sign up.");
+      console.error('Login error:', error.response?.data || error.message);
+      alert('Invalid email or password. Please try again or sign up.');
     }
   };
 
@@ -70,7 +80,7 @@ const Login = ({ setIsLoggedIn, setUsername, setUserEmail }) => {
         </form>
 
         <p className="text-sm text-center mt-4 text-gray-600">
-          Don’t have an account?{" "}
+          Don’t have an account?{' '}
           <button onClick={handleSignUp} className="text-blue-600 hover:underline">
             Sign Up
           </button>

@@ -4,7 +4,7 @@ import RightSidebar from './RightSidebar';
 import Post from './Post';
 import { useNavigate } from 'react-router-dom';
 
-const HomePage = ({ isLoggedIn }) => {
+const HomePage = ({ isLoggedIn, useremail }) => {
   const navigate = useNavigate();
 
   if (isLoggedIn) {
@@ -18,7 +18,7 @@ const HomePage = ({ isLoggedIn }) => {
 
           {/* Vertical Line Divider and Main Post Section */}
           <div className='m-5 flex-[1.9] border-x-2 border-gray-300 px-4'>
-            <Post />
+            <Post useremail={useremail} />
           </div>
 
           {/* Right Sidebar */}
