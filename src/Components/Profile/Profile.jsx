@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Posts from './Posts';
+import UserPosts from './UserPosts';
 import UserCodes from './UserCodes';
 import UserInfo from './UserInfo';
 import { useParams } from 'react-router-dom';
@@ -19,7 +19,7 @@ const Profile = ({ loggedInUsername, isLoggedIn, useremail }) => {
       <UserInfo username={loggedInUsername} setActiveTab={setActiveTab} />
       <div className='flex-grow bg-gray-400'>
         {activeTab === 'posts' ? (
-          <Posts />
+          <UserPosts isLoggedIn={isLoggedIn} useremail={useremail} />
         ) : (
           <UserCodes isLoggedIn={isLoggedIn} useremail={useremail} />
         )}
